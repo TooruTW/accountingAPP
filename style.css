@@ -1,0 +1,39 @@
+body{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+.hidden{
+    display: none;
+}
+.container{
+    display: flex;
+    width: 70%;
+    margin-top: 10rem;
+    background-color: beige;
+}
+.main-table{
+    width:80%
+}
+table{
+    width: 100%;
+}
+thead{
+    background-color: aqua;
+}
+
+td{ 
+    --column-count: 8;
+    width: calc(100% / var(--column-count));
+    border: 1px solid black;
+    text-align: center;
+}
+.inputZone{
+    border: 1px solid black;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20%;
+}

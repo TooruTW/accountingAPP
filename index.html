@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div>
+        <button id="save">SAVE</button>
+    </div>
+    <div class="container">
+        <div class="main-table">
+            <table>
+                <thead>
+                    <tr>
+                        <td class="checkbox hidden">選取欲刪除紀錄</td>
+                        <td>日期</td>
+                        <td>支出/收入</td>
+                        <td>種類</td>
+                        <td>對象</td>
+                        <td>金額</td>
+                        <td>貨幣</td>
+                        <td>備註</td>
+                    </tr>
+                </thead>
+                <tbody id="table-content">
+
+                </tbody>
+            </table>
+        </div>
+        <div class="inputZone">
+            <label>日期: <input id="date" type="date" ></label>
+            <label>支出/收入: 
+                <select id="isIncome">
+                <option value="收入">收入</option>
+                <option selected="selected" value="支出">支出</option>
+            </select></label>
+            <label>種類: <input id="purpose" type="text"></label>
+            <label>對象: <input id="toOrFrom" type="text"></label>
+            <label>金額: <input id="amount" type="text"></label>
+            <label>貨幣: <input id="currency" type="text" value="TWD"></label>
+            <label>備註: <input id="comment" type="text"></label>
+            <button id="submit" type="submit">送出</button>
+            <button id="edit" type="submit">編輯</button>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
