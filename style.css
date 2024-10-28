@@ -9,7 +9,7 @@ body{
 }
 .container{
     display: flex;
-    width: 70%;
+    width: 100%;
     margin-top: 10rem;
     background-color: beige;
 }
