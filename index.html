@@ -9,6 +9,7 @@
 <body>
     <div>
         <button id="save">SAVE</button>
+        <button id="delete">DELETE</button>
     </div>
     <div class="container">
         <div class="main-table">
@@ -16,13 +17,13 @@
                 <thead>
                     <tr>
                         <td class="checkbox hidden">選取欲刪除紀錄</td>
-                        <td>日期</td>
-                        <td>支出/收入</td>
-                        <td>種類</td>
-                        <td>對象</td>
-                        <td>金額</td>
-                        <td>貨幣</td>
-                        <td>備註</td>
+                        <td class="head" id="head-date">日期</td>
+                        <td class="head" id="head-isIncome">支出/收入</td>
+                        <td class="head" id="head-purpose">種類</td>
+                        <td class="head" id="head-toFrom">對象</td>
+                        <td class="head" id="head-amount">金額</td>
+                        <td class="head" id="head-currency">貨幣</td>
+                        <td class="head" id="head-comment">備註</td>
                     </tr>
                 </thead>
                 <tbody id="table-content">

@@ -1,4 +1,3 @@
-
 class Trading {
     constructor(id,date,isIncome,purpose,amount,currency,toFrom,comment){
         this.id = id;
@@ -10,11 +9,8 @@ class Trading {
         this.toFrom = toFrom;
         this.comment = comment;
     }
-
-    // functions
-
 }
-
+//elements
 const inputDate = document.querySelector("#date")
 const inputIsIncome = document.querySelector("#isIncome")
 const inputPurpose = document.querySelector("#purpose")
@@ -25,26 +21,28 @@ const inputComment = document.querySelector("#comment")
 const btnSubmit = document.querySelector("#submit")
 const btnEdit = document.querySelector("#edit")
 const btnSave = document.querySelector("#save")
+const btnDelete = document.querySelector("#delete")
 const tableContent = document.querySelector("#table-content")
+const heads = document.querySelectorAll(".head")
 
-
-// main-table database
+// main-table testing database
+let account = "testingAccount"
+let prevData = JSON.parse(localStorage.getItem(account))
 let tradingArray = [];
-let dataToUpdate = newTrade("1","2024-10-26","支出","早餐",50,"TWD","巷口早餐","")
-let dataToUpdate2 = newTrade("2","2024-10-27","支出","午餐",100,"TWD","巷口午餐","蕭 喝價")
-let dataToUpdate3 = newTrade("3","2024-10-27","支出","晚餐",150,"TWD","巷口晚餐","蕭 拍價")
 
+// functions
 // 將日期的default設為今天
-const date = new Date();
-const formattedDate = new Intl.DateTimeFormat('en-CA').format(date);
-inputDate.value = formattedDate
-
+function setToday(){
+    const date = new Date();
+    const formattedDate = new Intl.DateTimeFormat('en-CA').format(date);
+    inputDate.value = formattedDate
+}
 // 建立新的紀錄並審查格式
 function newTrade(id,date,isIncome,purpose,amount,currency,toFrom,comment){
     // 建立新的object
     let newData = new Trading(id,date,isIncome,purpose,amount,currency,toFrom,comment)
     console.log(newData)
-    // 確認資料格式
+    // 確認資料格式是否空白(備註可空白)
     let err = [];
     for (const property in newData){
         if(property === "comment"){continue}
@@ -58,7 +56,7 @@ function newTrade(id,date,isIncome,purpose,amount,currency,toFrom,comment){
     }
     return newData
 }
-
+// 重新將array中的資料渲染至畫面
 function updateTable(array){
     tableContent.innerHTML = ""
     array.map(item =>{
@@ -77,15 +75,52 @@ function updateTable(array){
     })
     // render
 }
-
-tradingArray.push(dataToUpdate,dataToUpdate2,dataToUpdate3)
-
-updateTable(tradingArray)
-
+// 排序
+function sortingData(datatype){
+    switch(datatype) {
+        case "head-date":
+            tradingArray.sort((a,b)=>new Date(a.date) - new Date(b.date))
+            console.log("sort by date",tradingArray)
+                break;
+        case "head-isIncome":
+            tradingArray.sort((a,b)=> a.isIncome.localeCompare(b.isIncome, 'zh-Hant-TW'))
+                console.log("sort by isIncome")
+                break;             
+        case "head-purpose":
+            tradingArray.sort((a,b)=> a.purpose.localeCompare(b.purpose, 'zh-Hant-TW'))
+                console.log("sort by purpose")
+                break;
+        case "head-amount":
+            tradingArray.sort((a,b)=>a.amount - b.amount)
+                console.log("sort by amount")
+                break;         
+        case "head-currency":
+            tradingArray.sort((a,b)=> a.currency.localeCompare(b.currency, 'en', { sensitivity: 'base' }))
+                console.log("sort by currency")
+                break;
+        case "head-toFrom":
+            tradingArray.sort((a,b)=> a.toFrom.localeCompare(b.toFrom, 'zh-Hant-TW'))            
+                console.log("sort by toFrom")
+                break;             
+        case "head-comment":
+            tradingArray.sort((a,b)=> a.comment.localeCompare(b.comment, 'zh-Hant-TW'))            
+                console.log("sort by comment")
+                break;        
+            default:
+                break;
+    } 
+    updateTable(tradingArray)
+}
+// btn function
+heads.forEach(item =>{
+    item.addEventListener('click',()=>{
+        sortingData(item.id)
+    })
+})
+// 送出
 btnSubmit.addEventListener("click",()=>{
-    let newId = Number(tradingArray[tradingArray.length - 1].id) +1
-
-    let dataToUpdate = newTrade(
+    let newId = tradingArray.length > 0? Number(tradingArray[tradingArray.length - 1].id) +1 : 1;
+    const dataToUpdate = newTrade(
         newId,
         inputDate.value,
         inputIsIncome.value,
@@ -97,12 +132,13 @@ btnSubmit.addEventListener("click",()=>{
         )
     if(dataToUpdate){    
         tradingArray.push(dataToUpdate)
-    }else{return}
+    }else{
+        console.log(`data incomplete`)
+        return}
     updateTable(tradingArray)
 })
-// 編輯
+// 編輯開始
 btnEdit.addEventListener("click",()=>{
-
     let target = document.querySelectorAll(".checkbox")
     target.forEach(item=> item.classList.toggle("hidden"))
     if(target[0].classList.value === "checkbox"){
@@ -118,17 +154,29 @@ btnEdit.addEventListener("click",()=>{
             tradingArray = tradingArray.filter(item => item.id !== deleteID[i])
             console.log(`round${i}`)
         }
-        console.log(tradingArray)
         console.log(deleteID)
         console.log("editing mode close")
         updateTable(tradingArray)
 
         btnEdit.textContent = "編輯"
     }
-   
 })
-
+// 編輯完成
 btnSave.addEventListener("click" , ()=>{
     let tradingArrayInJSON = JSON.stringify(tradingArray)
-    console.log(tradingArrayInJSON)
+    localStorage.setItem(account,tradingArrayInJSON)
 })
+btnDelete.addEventListener("click" , ()=>{
+    const userConfirm = confirm(`are you sure about that`)
+    if(userConfirm){
+        localStorage.removeItem(account)
+        updateTable(prevData? prevData:tradingArray)
+        alert(`data clear`)
+    }else{
+        alert(`cancel`)
+    }
+})
+// start render and working
+setToday()
+updateTable(prevData? prevData:tradingArray)
+
