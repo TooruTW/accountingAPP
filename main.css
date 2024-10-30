@@ -1,0 +1,101 @@
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+}
+.container{
+    border: 1px solid black;
+    width: 70%;
+    height: 80%;
+}
+.dashboard{
+    letter-spacing: 0.25rem;
+    height: 60% ;
+    background-color: beige;
+    font-family: 'Impact';
+    text-align: center;
+    border: 1px solid black;
+}
+#monthly{
+    display: flex;
+    justify-content: space-around
+}
+
+#today{
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 3.5rem;
+}
+.userInput{
+    width: 100%;
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+}
+.quickInput{
+    width: 40%;
+}
+#quickKeyInResult{
+    max-width: 80%;
+}
+
+.quickInput div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#quickKeyIn{
+    width: 25rem;
+    height: 2rem;
+}
+
+button{
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 1rem;
+    min-width: fit-content;
+}
+#saveNotice{
+    opacity: 0;
+    background-color: gray;
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 200px;
+    height: 100px;
+    z-index: 1;
+}
+
+.fadeout{
+    animation: fadeOut 2s forwards;
+}
+
+
+@keyframes fadeOut{
+    0% {
+        opacity:0;
+    }
+    20%{
+        opacity:1;
+    }
+    100%{
+        opacity:0;
+    }
+}
+
+.hidden{
+    display: none;
+}

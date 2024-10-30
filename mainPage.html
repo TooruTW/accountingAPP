@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MainPage</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+<body>
+    <a href="./index.html">DataBase</a>
+    <div class="container">
+        <div class="dashboard">
+            <div id="today"></div>
+            <h1><span id="total">總資產: 100000</span></h1>
+            <div id="monthly">
+                <h3  style="color:red">最大支出: <span id="greatestPay">1600</span></h3>
+                <h3  style="color:green">最大收入: <span id="greatestIncome">36000</span></h3>
+            </div>
+        </div>
+        <div class="userInput">
+            <div class="quickInput">
+                <div>
+                    <p id="quickKeyInResult">範例:支出 生活開銷 小北百貨 100 洗髮精(用空格隔開)</p>
+                    <button class="hidden" id="btnSaveToStorage">送出</button>
+                </div>
+                <div>
+                    <input type="text" id="quickKeyIn" value="收支 用途 對象 金額 備註"></input>
+                    <button id="btnquickKeyIn" type="submit">格式確認</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="saveNotice">
+        <h1>Saved</h1>
+    </div>
+   
+    <script src="./mainpage.js"></script>
+    
+</body>
+</html>
