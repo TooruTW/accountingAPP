@@ -10,7 +10,6 @@ class Trading {
         this.comment = comment;
     }
 }
-
 const totalAmount = document.querySelector("#total")
 const greatestPayInThisMonth = document.querySelector("#greatestPay")
 const greatestIncomeInThisMonth = document.querySelector("#greatestIncome")
@@ -20,34 +19,29 @@ const btnquickKeyIn = document.querySelector("#btnquickKeyIn")
 const quickKeyIn = document.querySelector("#quickKeyIn")
 const btnSaveToStorage = document.querySelector("#btnSaveToStorage")
 
-
-
 // main-table testing database
 let prevData = JSON.parse(localStorage.getItem("trading"))
 // JS用全局變數
 let tradingArray = [];
 if(prevData){tradingArray = prevData}
-
 function getToday(){
     let date = new Date()
     const formattedDate = new Intl.DateTimeFormat('en-CA').format(date);
     return formattedDate
 }
-
 function setToday(){
     document.querySelector("#today").innerHTML = `<h1>${getToday()}</h1>`
 }
-
 function setDashBoard(){
     let payArr = tradingArray.filter(item => item.isIncome === "支出")
     let incomeArr = tradingArray.filter(item => item.isIncome === "收入")
     let totalPay = payArr.reduce((total, item) => total + Number(item.amount),0)
     let totalIncome = incomeArr.reduce((total, item) => total + Number(item.amount),0)
-    let greatestPay = payArr.reduce((max, item) => Number(item.amount) > max ? Number(item.amount) : max, Number(payArr[0].amount));
-    let greatestIncome = incomeArr.reduce((max, item) => Number(item.amount) > max ? Number(item.amount) : max,Number(incomeArr[0].amount));
+    
+    let greatestPay = payArr.reduce((max, item) => Number(item.amount) > max ? Number(item.amount) : max,0);
+    let greatestIncome = incomeArr.reduce((max, item) => Number(item.amount) > max ? Number(item.amount) : max,0);
 
-
-    if(totalPay>totalIncome){
+    if(totalPay > totalIncome){
         totalAmount.textContent = `總資產: ${totalIncome - totalPay}`
         totalAmount.style.color = "red"
     }else{
@@ -57,15 +51,12 @@ function setDashBoard(){
 
     let greatestPayItem = tradingArray.find(item => item.amount == greatestPay)
     let greatestIncomeItem = tradingArray.find(item => item.amount == greatestIncome)
-
-    greatestPayInThisMonth.textContent = `${greatestPayItem.amount} ${greatestPayItem.purpose} ${greatestPayItem.comment}`
-    greatestIncomeInThisMonth.textContent = `${greatestIncomeItem.amount} ${greatestIncomeItem.purpose} ${greatestIncomeItem.comment}`
-
-    
-    
-
-    console.log(payArr,incomeArr)
-    console.log(greatestIncome,greatestPay)
+    if(greatestPayItem){
+        greatestPayInThisMonth.textContent = `${greatestPayItem.amount} ${greatestPayItem.purpose} ${greatestPayItem.comment}`
+    }
+    if(greatestIncomeItem){
+        greatestIncomeInThisMonth.textContent = `${greatestIncomeItem.amount} ${greatestIncomeItem.purpose} ${greatestIncomeItem.comment}`
+    }
 }
 
 function newTrade(id,date,isIncome,purpose,amount,currency,toFrom,comment){
@@ -85,7 +76,6 @@ function newTrade(id,date,isIncome,purpose,amount,currency,toFrom,comment){
     }
     return newData
 }
-
 function dataCheck(rawData){
     let arr = rawData.split(" ")
     let newId = tradingArray.length > 0? Number(tradingArray[tradingArray.length - 1].id) +1 : 1;
@@ -106,7 +96,6 @@ function dataCheck(rawData){
     }
    
 }
-
 function addTrade(){
     let dataToUpdate = dataCheck(quickKeyIn.value)
     if(dataToUpdate){
@@ -120,13 +109,11 @@ function addTrade(){
         return false
     }
 }
-
 btnquickKeyIn.addEventListener('click',()=>{
     if(dataCheck(quickKeyIn.value)){
         btnSaveToStorage.classList.remove("hidden")
     }
 })
-
 btnSaveToStorage.addEventListener('click',()=>{
     addTrade()
     console.log(`送出成功`)
