@@ -21,8 +21,9 @@ body{
     align-items: center;
 }
 .hidden{
-    display: none;
+display: none;
 }
+
 .container{
     min-height: 80%;
     display: flex;
@@ -54,5 +55,140 @@ td{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 20%;
+    width: 10rem;
+}
+.inputZone button{
+    width: 50%;
+}
+
+
+
+#Insert-active{
+        display: none;
+}
+
+@media (max-width: 900px){
+
+    :root{
+        --column-count: 8;
+    }
+    body{
+        position: absolute;
+        padding: 0;
+        margin: 0;
+        width: 95vw;
+        height: 95vh;
+    }
+    .local-storage-control{
+        margin: 0;
+        width: 50%;
+        height: 10%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .hidden{
+        display: none;
+    }
+    .container{
+        min-height: 80%;
+        width: 100%;
+    }
+    .main-table{
+        width:100%;
+        border-collapse: collapse;
+    }
+   
+    thead{
+        font-weight: bold;
+        cursor: pointer;
+    }
+    
+    tr{
+        height: 1.5rem;
+    }
+    
+    td{ 
+        text-align: center;
+        border-bottom: 1px solid black;
+    }
+    .inputZone{
+        border: 0.25rem solid rgb(172, 172, 172);
+        border-radius: 10px;
+        height: 50%;
+        width: 30%;
+        background-color: whitesmoke;
+        position: fixed;
+        right: 10px;
+        bottom: 10rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        z-index: 1;
+        animation: appear 1s forwards;
+    }
+    .mobile-hidden{
+        animation: vanish 1s forwards;
+    }
+    
+    #Insert-active{
+        background-color: whitesmoke;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        z-index: 2;
+        right: 0px;
+        bottom: 10rem;
+        margin-right: 10px;
+        border-radius: 50%;
+        width: 3rem;
+        height: 3rem;
+        border: 1px solid black;
+    }
+    .close{
+        animation: close 1s ;
+    }
+    .active{
+        animation: active 1s ;
+    }
+
+    @keyframes active {
+        from{
+            opacity: 0;
+            transform: rotate(0deg);
+        }
+        to{
+            opacity: 1;
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes close {
+        from{
+            transform: rotate(0deg);
+        }
+        to{
+            transform: rotate(-360deg);
+        }
+    }
+    @keyframes appear{
+        from{
+            display: none;
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+    }
+
+    @keyframes vanish{
+        from{
+            opacity: 1;
+        }
+        to{
+            opacity: 0;
+            display: none;
+        }
+    }
+  
 }
