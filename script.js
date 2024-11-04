@@ -24,6 +24,8 @@ const btnSave = document.querySelector("#save")
 const btnDelete = document.querySelector("#delete")
 const tableContent = document.querySelector("#table-content")
 const heads = document.querySelectorAll(".head")
+const btnInsert = document.querySelector("#Insert-active")
+const insertZone = document.querySelector("#insert")
 
 
 // main-table testing database
@@ -62,7 +64,7 @@ function newTrade(id,date,isIncome,purpose,amount,currency,toFrom,comment){
 function updateTable(array){
     tableContent.innerHTML = ""
     array.map(item =>{
-        tableContent.innerHTML += `<tr>
+        tableContent.innerHTML += `<tr id="tr-${item.id}">
         <td class="checkbox hidden">
         <input class="deletedCheck" type="checkbox" id="${item.id}">
         </td>
@@ -75,6 +77,20 @@ function updateTable(array){
         <td>${item.comment}</td>
         </tr>`
     })
+    let checkboxArr = document.querySelectorAll(".deletedCheck")
+    
+    for(const checkbox of checkboxArr ){
+        checkbox.addEventListener("change",(event)=>{
+            let trID = document.querySelector(`#tr-${checkbox.id}`)
+            if(event.target.checked){
+                trID.style.backgroundColor = "red"
+                console.log(`${checkbox.id} checked`,trID)
+            }else{
+                trID.style.backgroundColor = "white"
+                console.log(`${checkbox.id} cancel`)
+            }
+        })
+    }
 }
 // function-排序
 function sortingData(datatype){
@@ -163,6 +179,7 @@ btnEdit.addEventListener("click",()=>{
 btnSave.addEventListener("click" , ()=>{
     let tradingArrayInJSON = JSON.stringify(tradingArray)
     localStorage.setItem("trading",tradingArrayInJSON)
+    alert(`Data Save`)
 })
 // EventListener-localStorage DELETE
 btnDelete.addEventListener("click" , ()=>{
@@ -173,10 +190,17 @@ btnDelete.addEventListener("click" , ()=>{
         updateTable(tradingArray)
         alert(`data clear`)
     }else{
-        alert(`Good`)
+        alert(`Not thing happened `)
     }
 })
-
+btnInsert.addEventListener('click',()=>{
+    if(btnInsert.textContent === "Insert")
+        {btnInsert.textContent = "Close"}
+    else{btnInsert.textContent = "Insert"}
+    btnInsert.classList.toggle("active")
+    btnInsert.classList.toggle("close")
+    insertZone.classList.toggle("mobile-hidden")
+})
 
 // default start render and working
 if(prevData){tradingArray = prevData}

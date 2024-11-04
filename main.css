@@ -1,5 +1,5 @@
 :root{
-    --text-font: fantasy;
+    --text-font: Impact;
     --font-weight:bold;
     --btn-size:8rem;
     --btn-size-animation:100rem;
@@ -14,7 +14,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-family: 'Impact';
+    font-family: var(--text-font);
 }
 
 button{
@@ -74,9 +74,15 @@ background-color: transparent;
     font-family: var(--text-font);
     border: 0.25rem solid black;
 }
-#result{
+
+.input-data{
+    border: 0.25rem solid black;
+    border-radius: 10px;
+    padding: 0.2rem 3rem 0.2rem;
     cursor: pointer;
+    animation: shining 2s infinite;
 }
+
 #fade-out-animate-income{
     display: flex;
     justify-content: center;
@@ -217,4 +223,116 @@ background-color: transparent;
         clip-path: inset(100%)
     }
    
+}
+
+@keyframes shining{
+    0%{transform: scale(1);}
+    50%{transform: scale(1.25);}
+    100%{transform: scale(1);}
+}
+
+@media (max-width: 900px) {
+    :root{
+        --text-font: Impact;
+        --font-weight:bold;
+        --btn-size:5rem;
+        --btn-size-animation:100rem;
+    }
+    
+    body{
+        margin: 0;
+        padding: 1rem 0 1rem 0;
+        width: 100vw;
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        font-family: var(--text-font);
+    }
+    
+    button{
+    background-color: transparent;
+    }
+    
+    .container{
+        margin: 0;
+        width: 100%;
+        height: 80%;
+    }
+    .dashboard{
+        letter-spacing: 0.1rem;
+        height: 70% ;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    #monthly{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: left;
+    }
+    
+    #today{
+        font-size: 1.5rem;
+        font-style: italic;
+    }
+    
+    .userInput{
+        width: 100%;
+        height: 30%;
+    }
+    
+    .hidden{
+        display: none;
+    }
+    
+    #input-amount{
+        border: none;
+        border-bottom: 0.25rem solid black;
+        font-style: italic;
+        font-weight: var(--font-weight);
+        width: calc(var(--btn-size)*2);
+    }
+    .input-data{
+        border: 0px;
+        border-radius: 0px;
+        padding: 0.2rem 3rem 0.2rem;
+        cursor: pointer;
+        animation: shining 2s infinite;
+    }
+    .question-btns{
+        font-weight: var(--font-weight);
+        height: var(--btn-size);
+        width: var(--btn-size);
+        border-radius: 50%;
+        font-family: var(--text-font);
+        border: 0.25rem solid black;
+        font-size: 1.5rem;
+    }
+    #result{
+        cursor: pointer;
+    }
+    #fade-out-animate-income{
+        font-size: 1.5rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: var(--font-weight);
+        font-family: var(--text-font);
+        animation: fade-out-animate-income 3s forwards;
+    }
+    #fade-out-animate-payment{
+        font-size: 1.5rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: var(--font-weight);
+        font-family: var(--text-font);
+        animation: fade-out-animate-payment 3s forwards;
+    }
 }

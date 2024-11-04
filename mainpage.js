@@ -91,7 +91,7 @@ function showNextQuestion(p){
 
 function reSet(){
     // 將資料存入local storage
-    console.log(answer)
+    if(questionIndex === 0)return
     let newId = tradingArray.length > 0? Number(tradingArray[tradingArray.length - 1].id) +1 : 1;
 
     const dataToUpdate = new Trading(newId,getToday(),answer[0],answer[1],answer[2],"TWD","","")
@@ -122,8 +122,7 @@ document.querySelector("#start").addEventListener('click',()=>{
 checkbtn.addEventListener('click',()=>{
     if(document.querySelector("#input-amount").value){
         answer.push(document.querySelector("#input-amount").value)
-        document.querySelector("#result").innerHTML = `<h1 id="input-data">${answer[0]} ${answer[1]} ${answer[2]}元</h1>`
-        document.querySelector("#input-data").style.color = `${answer[0]==="支出"? "red":"green"}`
+        document.querySelector("#result").innerHTML = `<div class="input-data"><h1>${answer[0]} ${answer[1]} ${answer[2]}元</h1><br/><p>點擊以繼續</p></div>`
     }else{
         alert(`請輸入金額`) 
         questionIndex --
