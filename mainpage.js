@@ -14,13 +14,7 @@ const totalAmount = document.querySelector("#total")
 const greatestPayInThisMonth = document.querySelector("#greatestPay")
 const greatestIncomeInThisMonth = document.querySelector("#greatestIncome")
 
-const userInput = document.querySelector("#quickKeyInResult")
-const btnquickKeyIn = document.querySelector("#btnquickKeyIn")
-const quickKeyIn = document.querySelector("#quickKeyIn")
-const btnSaveToStorage = document.querySelector("#btnSaveToStorage")
-
 // quick input BTN
-const root = document.querySelector("#container")
 const questions = document.querySelectorAll(".question")
 const checkbtn = document.querySelector("#check-btn")
 const btns = document.querySelectorAll(".question-btns")
