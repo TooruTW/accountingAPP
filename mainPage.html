@@ -18,20 +18,31 @@
             </div>
         </div>
         <div class="userInput">
-            <div class="quickInput">
-                <div>
-                    <p id="quickKeyInResult">範例:支出 生活開銷 小北百貨 100 洗髮精(用空格隔開)</p>
-                    <button class="hidden" id="btnSaveToStorage">送出</button>
+            <div class="seriesQuestion">
+                <div class="question">
+                    <button class="question-btns " id="start">START</button>
                 </div>
-                <div>
-                    <input type="text" id="quickKeyIn" value="收支 用途 對象 金額 備註"></input>
-                    <button id="btnquickKeyIn" type="submit">格式確認</button>
+                <div class="question hidden" id="isIncome">
+                    <button class="question-btns" value="收入">收入</button>
+                    <button class="question-btns" value="支出">支出</button>
+                </div>
+                <div class="question hidden" id="purpose">
+                    <button class="question-btns income" value="本月薪水">本月薪水</button>
+                    <button class="question-btns income" value="天降ㄤ包">天降ㄤ包</button>
+                    <button class="question-btns pay" value="吃的">吃的</button>
+                    <button class="question-btns pay" value="喝的">喝的</button>
+                    <button class="question-btns pay" value="穿的">穿的</button>
+                    <button class="question-btns pay" value="用的">用的</button>
+                </div>
+                <div class="question hidden" id="amount">
+                    <input type="number" id="input-amount" placeholder="TWD">
+                    <button class="question-btns" id="check-btn">送出</button>
+                </div>
+                <div class="question hidden" id="result" onclick="reSet()">
+                    
                 </div>
             </div>
         </div>
-    </div>
-    <div id="saveNotice">
-        <h1>Saved</h1>
     </div>
    
     <script src="./mainpage.js"></script>

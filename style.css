@@ -1,3 +1,6 @@
+:root{
+    --column-count: 8;
+}
 body{
     padding: 0;
     margin: 0;
@@ -8,16 +11,15 @@ body{
     align-items: center;
     justify-content: center;
 }
+
 .local-storage-control{
     margin: 0;
     width: 50%;
     height: 10%;
-    border: 1px solid black;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-
 .hidden{
     display: none;
 }
@@ -31,20 +33,23 @@ body{
 }
 table{
     width: 100%;
+    border-collapse: collapse;
 }
 thead{
-    background-color: aqua;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+tr{
+    height: 1.5rem;
 }
 
 td{ 
-    --column-count: 8;
-    width: calc(100% / var(--column-count));
-    border: 1px solid black;
     text-align: center;
+    border-bottom: 1px solid black;
 }
 .inputZone{
     padding: 1rem;
-    border: 1px solid black;
     height: 20rem;
     display: flex;
     flex-direction: column;

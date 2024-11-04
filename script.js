@@ -25,6 +25,7 @@ const btnDelete = document.querySelector("#delete")
 const tableContent = document.querySelector("#table-content")
 const heads = document.querySelectorAll(".head")
 
+
 // main-table testing database
 let prevData = JSON.parse(localStorage.getItem("trading"))
 // JS用全局變數
@@ -181,4 +182,8 @@ btnDelete.addEventListener("click" , ()=>{
 if(prevData){tradingArray = prevData}
 setToday()
 updateTable(tradingArray)
+
+
+
+
 

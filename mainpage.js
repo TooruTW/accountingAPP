@@ -19,11 +19,25 @@ const btnquickKeyIn = document.querySelector("#btnquickKeyIn")
 const quickKeyIn = document.querySelector("#quickKeyIn")
 const btnSaveToStorage = document.querySelector("#btnSaveToStorage")
 
+// quick input BTN
+const root = document.querySelector("#container")
+const questions = document.querySelectorAll(".question")
+const checkbtn = document.querySelector("#check-btn")
+const btns = document.querySelectorAll(".question-btns")
+const incomes = document.querySelectorAll(".income")
+const payments = document.querySelectorAll(".pay")
+const result = document.querySelector("#result")
+
+let questionIndex = 0
+let questionArr = Array(questions)
+let answer = []
+
 // main-table testing database
 let prevData = JSON.parse(localStorage.getItem("trading"))
 // JS用全局變數
 let tradingArray = [];
 if(prevData){tradingArray = prevData}
+
 function getToday(){
     let date = new Date()
     const formattedDate = new Intl.DateTimeFormat('en-CA').format(date);
@@ -42,90 +56,92 @@ function setDashBoard(){
     let greatestIncome = incomeArr.reduce((max, item) => Number(item.amount) > max ? Number(item.amount) : max,0);
 
     if(totalPay > totalIncome){
-        totalAmount.textContent = `總資產: ${totalIncome - totalPay}`
         totalAmount.style.color = "red"
+        totalAmount.textContent = `總資產: ${totalIncome - totalPay}`
+
     }else{
         totalAmount.style.color = "green"
         totalAmount.textContent = `總資產: ${totalIncome - totalPay}`
     }
-
-    let greatestPayItem = tradingArray.find(item => item.amount == greatestPay)
-    let greatestIncomeItem = tradingArray.find(item => item.amount == greatestIncome)
+     
+    let greatestPayItem = payArr.find(item => item.amount == greatestPay)
+    let greatestIncomeItem = incomeArr.find(item => item.amount == greatestIncome)
+    console.log(greatestPayItem,greatestIncomeItem)  
     if(greatestPayItem){
-        greatestPayInThisMonth.textContent = `${greatestPayItem.amount} ${greatestPayItem.purpose} ${greatestPayItem.comment}`
+        greatestPayInThisMonth.innerHTML = `<br/>${greatestPayItem.amount} ${greatestPayItem.purpose} <br/> ${greatestPayItem.comment}`
     }
     if(greatestIncomeItem){
-        greatestIncomeInThisMonth.textContent = `${greatestIncomeItem.amount} ${greatestIncomeItem.purpose} ${greatestIncomeItem.comment}`
+        greatestIncomeInThisMonth.innerHTML = `<br/>${greatestIncomeItem.amount} ${greatestIncomeItem.purpose}<br/> ${greatestIncomeItem.comment}`
     }
 }
-
-function newTrade(id,date,isIncome,purpose,amount,currency,toFrom,comment){
-    // 建立新的object
-    let newData = new Trading(id,date,isIncome,purpose,amount,currency,toFrom,comment)
-    // 確認資料格式是否空白(備註可空白)
-    let err = [];
-    for (const property in newData){
-        if(property === "comment"){continue}
-        if(newData[property] === ""){
-            err.push(property)
-        }
-    }
-    if(err.length > 0 ){ 
-        alert(`plz enter ${err.join(", ")}`)
-        return false
-    }
-    return newData
-}
-function dataCheck(rawData){
-    let arr = rawData.split(" ")
-    let newId = tradingArray.length > 0? Number(tradingArray[tradingArray.length - 1].id) +1 : 1;
-
-    const dataToUpdate = newTrade(newId,getToday(),arr[0],arr[1],arr[3],"TWD",arr[2],arr[4]? arr[4]:"")
-    userInput.innerHTML = `<p style="font-style: italic">${dataToUpdate.date} ${dataToUpdate.isIncome}</p>`
-    userInput.innerHTML += `<p>目的:${dataToUpdate.purpose} 幣種:${dataToUpdate.currency} 金額:${dataToUpdate.amount} 對象:${dataToUpdate.toFrom} 備註:${dataToUpdate.comment}</p>`
-    
-    console.log(Number(dataToUpdate.amount))
-    console.log(arr,dataToUpdate)
-
-    if(!Number(dataToUpdate.amount)){
-        userInput.innerHTML += `<h3 style="color:red; font-size:bold">格式錯誤 請重新確認資料</h3>`
-        return false
-    }
-    else{
-        return dataToUpdate
-    }
-   
-}
-function addTrade(){
-    let dataToUpdate = dataCheck(quickKeyIn.value)
-    if(dataToUpdate){
-        tradingArray.push(dataToUpdate)
-        console.log(tradingArray)
-
-        let tradingArrayInJSON = JSON.stringify(tradingArray)
-            localStorage.setItem("trading",tradingArrayInJSON)
-    }else{
-        alert(`格式錯誤 請重新確認資料`)
-        return false
-    }
-}
-btnquickKeyIn.addEventListener('click',()=>{
-    if(dataCheck(quickKeyIn.value)){
-        btnSaveToStorage.classList.remove("hidden")
-    }
-})
-btnSaveToStorage.addEventListener('click',()=>{
-    addTrade()
-    console.log(`送出成功`)
-    btnSaveToStorage.classList.add("hidden")
-    document.querySelector("#saveNotice").classList.add("fadeout")
-    setDashBoard()
-})
-document.querySelector("#saveNotice").addEventListener("animationend", () => {
-    // 動畫結束時移除類別
-    document.querySelector("#saveNotice").classList.remove("fadeout");
-});
 
 setToday()
 setDashBoard()
 
+// quickInput BTN
+
+function showNextQuestion(p){
+    for(const question of questions){
+        if(!question.classList.contains("hidden")){question.classList.add("hidden")}
+    }
+    questions[p].classList.remove("hidden")
+    if(answer[0] === "收入"){
+        for(const payment of payments ){payment.classList.add("hidden")}
+        for(const income of incomes ){income.classList.remove("hidden")}
+    }
+    if(answer[0] === "支出"){
+        for(const payment of payments ){payment.classList.remove("hidden")}
+        for(const income of incomes ){income.classList.add("hidden")}
+    }
+}
+
+function reSet(){
+    // 將資料存入local storage
+    console.log(answer)
+    let newId = tradingArray.length > 0? Number(tradingArray[tradingArray.length - 1].id) +1 : 1;
+
+    const dataToUpdate = new Trading(newId,getToday(),answer[0],answer[1],answer[2],"TWD","","")
+
+    tradingArray.push(dataToUpdate)
+        console.log(tradingArray)
+
+    let tradingArrayInJSON = JSON.stringify(tradingArray)
+    localStorage.setItem("trading",tradingArrayInJSON)
+
+    // 動畫後重製輸入介面
+    result.innerHTML = `<div id="fade-out-animate-${answer[0] === "收入"? "income":"payment"}">$</div>`
+    questionIndex = 0
+    answer = []
+    document.querySelector("#start").classList.add("move-inn")
+    setTimeout(()=>{showNextQuestion(questionIndex)},3000)
+    setDashBoard()
+}
+
+// 重製START的 move-inn 動畫
+document.querySelector("#start").addEventListener('click',()=>{
+    if(document.querySelector("#start").classList.contains("move-inn")){
+        document.querySelector("#start").classList.remove("move-inn")
+    }
+})
+
+// 金額不可空白確認
+checkbtn.addEventListener('click',()=>{
+    if(document.querySelector("#input-amount").value){
+        answer.push(document.querySelector("#input-amount").value)
+        document.querySelector("#result").innerHTML = `<h1 id="input-data">${answer[0]} ${answer[1]} ${answer[2]}元</h1>`
+        document.querySelector("#input-data").style.color = `${answer[0]==="支出"? "red":"green"}`
+    }else{
+        alert(`請輸入金額`) 
+        questionIndex --
+        return
+    }
+})
+// 按鈕屬性添加 
+for(const btn of btns){
+    btn.addEventListener('click',()=>{
+        if(questionIndex === questions.length -1) return 
+        if(btn.value){answer.push(btn.value)}
+        questionIndex ++
+        showNextQuestion(questionIndex)
+    })
+}

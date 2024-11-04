@@ -1,3 +1,10 @@
+:root{
+    --text-font: fantasy;
+    --font-weight:bold;
+    --btn-size:8rem;
+    --btn-size-animation:100rem;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -7,21 +14,23 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: aqua;
+    font-family: 'Impact';
 }
+
+button{
+background-color: transparent;
+}
+
 .container{
-    border: 1px solid black;
     width: 70%;
     height: 80%;
 }
 .dashboard{
     letter-spacing: 0.25rem;
     height: 60% ;
-    background-color: beige;
-    font-family: 'Impact';
     text-align: center;
-    border: 1px solid black;
 }
+
 #monthly{
     display: flex;
     justify-content: space-around
@@ -32,70 +41,180 @@ body{
     font-style: italic;
     margin-bottom: 3.5rem;
 }
+
 .userInput{
     width: 100%;
     height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
-}
-.quickInput{
-    width: 40%;
-}
-#quickKeyInResult{
-    max-width: 80%;
-}
-
-.quickInput div{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#quickKeyIn{
-    width: 25rem;
-    height: 2rem;
-}
-
-button{
-    cursor: pointer;
-    border: none;
-    background: none;
-    font-size: 1rem;
-    min-width: fit-content;
-}
-#saveNotice{
-    opacity: 0;
-    background-color: gray;
-    border-radius: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    width: 200px;
-    height: 100px;
-    z-index: 1;
-}
-
-.fadeout{
-    animation: fadeOut 2s forwards;
-}
-
-
-@keyframes fadeOut{
-    0% {
-        opacity:0;
-    }
-    20%{
-        opacity:1;
-    }
-    100%{
-        opacity:0;
-    }
 }
 
 .hidden{
     display: none;
+}
+
+#input-amount{
+    height: auto;
+    border: none;
+    border-bottom: 0.25rem solid black;
+    font-style: italic;
+    font-weight: var(--font-weight);
+    font-size:1.5rem;
+    margin: 1rem;
+}
+
+
+.question-btns{
+    font-weight: var(--font-weight);
+    font-size: 2.5rem;
+    height: var(--btn-size);
+    width: var(--btn-size);
+    border-radius: 50%;
+    font-family: var(--text-font);
+    border: 0.25rem solid black;
+}
+#result{
+    cursor: pointer;
+}
+#fade-out-animate-income{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: var(--font-weight);
+    font-family: var(--text-font);
+    animation: fade-out-animate-income 3s forwards;
+}
+#fade-out-animate-payment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: var(--font-weight);
+    font-family: var(--text-font);
+    animation: fade-out-animate-payment 3s forwards;
+}
+.move-inn{
+    animation: move-in 1s forwards;
+}
+
+@keyframes move-in {
+    0%{ 
+        position: relative;
+        bottom: 10rem;
+        opacity: 0%;
+        font-size:0.1rem;
+        border: 3.2rem solid black;
+        clip-path: inset(100 0 0 0)
+    }
+
+    100%{
+        position: relative;
+        bottom: 0rem;
+        opacity: 100%;
+        border: 0.25rem solid black;
+        clip-path: inset(0 0 0 0)
+
+    }
+}
+
+@keyframes fade-out-animate-income{
+    0%{ 
+        opacity: 0%;
+        transform: rotate(0deg);
+        width: var(--btn-size-animation);
+        height: var(--btn-size-animation);
+        border-radius: 50%;
+        font-size: 62.5rem;
+        border: 3.2rem solid black;
+    }
+
+    50%{
+        opacity: 100%;
+        transform: rotate(360deg);
+        height: var(--btn-size);
+        width: var(--btn-size);
+        border-radius: 50%;
+        font-size: 5rem;
+        border: 0.25rem solid black;
+        top:0rem;
+        clip-path: inset(0 0 0 0)
+    }
+
+    80%{
+        opacity: 100%;
+        transform: rotate(360deg);
+        height: var(--btn-size);
+        width: var(--btn-size);
+        border-radius: 50%;
+        font-size: 5rem;
+        border: 0.25rem solid black;
+        position: relative;
+        top:-5rem;
+        clip-path: inset(0 0 0 0)
+    }
+   
+    100%{
+        position: relative;
+        opacity: 100%;
+        transform: rotate(360deg);
+        height: var(--btn-size);
+        width: var(--btn-size);
+        border-radius: 50%;
+        font-size: 5rem;
+        border: 0.25rem solid black;
+        top:10rem;
+        clip-path: inset(0 0 100% 0)
+    }
+   
+}
+
+@keyframes fade-out-animate-payment{
+    0%{ 
+        opacity: 0%;
+        transform: rotate(0deg);
+        width: var(--btn-size-animation);
+        height: var(--btn-size-animation);
+        border-radius: 50%;
+        font-size: 62.5rem;
+        border: 3.2rem solid black;
+    }
+
+    50%{
+        opacity: 100%;
+        transform: rotate(360deg);
+        height: var(--btn-size);
+        width: var(--btn-size);
+        border-radius: 50%;
+        font-size: 5rem;
+        border: 0.25rem solid black;
+        left:0rem;
+        clip-path: inset(0 0 0 0)
+    }
+
+    80%{
+        opacity: 100%;
+        height: var(--btn-size);
+        width: var(--btn-size);
+        transform: rotate(720deg);
+        border-radius: 50%;
+        font-size: 5rem;
+        border: 0.25rem solid black;
+        position: relative;
+        left:-5rem;
+        clip-path: inset(0 0 0 0)
+    }
+   
+    100%{
+        position: relative;
+        opacity: 100%;
+        transform: rotate(3600deg);
+        height: var(--btn-size);
+        width: var(--btn-size);
+        border-radius: 50%;
+        font-size: 0.5rem;
+        border: 0.025rem solid black;
+        left:30rem;
+        clip-path: inset(100%)
+    }
+   
 }
