@@ -45,6 +45,7 @@ function newTrade(id,date,isIncome,purpose,amount,currency,toFrom,comment){
     // 確認資料格式是否空白(備註可空白)
     let err = [];
     for (const property in newData){
+        if(property === "toFrom"){continue}
         if(property === "comment"){continue}
         if(newData[property] === ""){
             err.push(property)
