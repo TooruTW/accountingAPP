@@ -16,7 +16,6 @@ body{
     align-items: center;
     font-family: var(--text-font);
     overflow: hidden;
-
 }
 a{  
     color: rgb(72, 56, 56);
@@ -30,6 +29,13 @@ a{
     display: flex;
     flex-direction: column;
     align-items: end;
+
+}
+#tutorial-content{
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: white;
+    border: 2px solid black;
 }
 #tutorial-active{
     display: flex;

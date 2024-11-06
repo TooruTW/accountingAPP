@@ -20,6 +20,7 @@ body{
     margin: 0;
     font: inherit;
     cursor: pointer;
+    color: inherit;
 }
 a{  
     color: rgb(31, 31, 31);
@@ -125,7 +126,6 @@ td{
 @keyframes pop-out {
     from{
         opacity: 1;
-        display: inline;
     }
     to{
         opacity: 0;
@@ -179,9 +179,9 @@ td{
         border-bottom: 1px solid black;
     }
     #tutorial{
-        width: 30%;
+        width: 80vw;
         position: fixed;
-        right: 10px;
+        right: 2rem;
         bottom: 5rem;
         display: flex;
         flex-direction: column;
@@ -213,12 +213,13 @@ td{
     }
     
     #Insert-active{
+        cursor: pointer;
         background-color: whitesmoke;
         display: flex;
         justify-content: center;
         align-items: center;
         position: fixed;
-        z-index: 3;
+        z-index: 5;
         right: 0px;
         bottom: 10rem;
         margin-right: 10px;
