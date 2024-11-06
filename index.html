@@ -8,9 +8,8 @@
 </head>
 <body>
     <div class="local-storage-control">
-        <a href="./mainPage.html">MainPage</a>
-        <button id="save">SAVE</button>
-        <button id="delete">DELETE</button>
+        <a href="./mainPage.html">Main Page</a>
+        <button id="delete">Delete Database</button>
     </div>
     <div class="container">
         <div class="main-table">
@@ -63,6 +62,29 @@
         </div>
         </div>
 
+    </div>
+    <div id="tutorial">
+        <div class="hidden-1" id="tutorial-content">
+            <p>
+            MainPage : <br/>切換至總覽頁面。快速輸入及帳戶概況皆在總覽頁面。
+            </p>
+            <p>
+            Delete Database : <br/>
+            刪除整個資料庫。 <br/>注意！此動作無法回復。 <br/>
+            p.s.本app的資料皆儲存在用戶的瀏覽器中(local Storage 最大佔用空間約5MB)
+            </p>
+            <p>
+            編輯 : <br/>
+            點擊後啟動編輯模式，勾選欲刪除資料，接著按刪除以移除該筆資料。
+            </p>
+            <p>
+            排序 : <br/>
+            點擊首欄位可以依排序資料。
+            </p>
+        </div>
+        <div id="tutorial-active">
+            <p>i</p>
+        </div>
     </div>
     <script src="./script.js"></script>
 </body>

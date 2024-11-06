@@ -11,8 +11,23 @@ body{
     align-items: center;
     justify-content: center;
 }
-
+#delete{
+    -webkit-appearance: none; 
+    appearance: none;
+    border: 0.2rem solid rgb(0, 0, 0);
+    background-color: red;
+    padding: 0.2rem;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+}
+a{  
+    color: rgb(31, 31, 31);
+    font-size: 1.5rem;
+}
 .local-storage-control{
+    letter-spacing: 0.25rem;
+    font-family: 'Impact';
     margin: 0;
     width: 50%;
     height: 10%;
@@ -61,13 +76,62 @@ td{
     width: 50%;
 }
 
+#tutorial{
+    width: 30%;
+    position: fixed;
+    right: 5rem;
+    bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+#tutorial-active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid black;
+    border-radius: 50%;
+    animation: active 1s ;
+    cursor: pointer;
+    background-color: whitesmoke;
+}
 
-
+.show-content{
+    background-color: whitesmoke;
+    padding: 1rem;
+    border-radius: 10px;
+    border: 5px solid gray;
+    animation: popup 1s forwards;
+}
+.hidden-1{
+    animation: pop-out 1s forwards
+}
 
 #Insert-active{
         display: none;
 }
 
+@keyframes popup {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes pop-out {
+    from{
+        opacity: 1;
+        display: inline;
+    }
+    to{
+        opacity: 0;
+        display: none;
+    }
+}
 @media (max-width: 900px){
 
     :root{
@@ -98,6 +162,7 @@ td{
     .main-table{
         width:100%;
         border-collapse: collapse;
+        z-index: 1;
     }
    
     thead{
@@ -113,6 +178,16 @@ td{
         text-align: center;
         border-bottom: 1px solid black;
     }
+    #tutorial{
+        width: 30%;
+        position: fixed;
+        right: 10px;
+        bottom: 5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        z-index: 3;
+    }
     .inputZone{
         border: 0.25rem solid rgb(172, 172, 172);
         border-radius: 10px;
@@ -125,7 +200,7 @@ td{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        z-index: 1;
+        z-index: 2;
         animation: appear 1s forwards;
     }
 
@@ -143,14 +218,14 @@ td{
         justify-content: center;
         align-items: center;
         position: fixed;
-        z-index: 2;
+        z-index: 3;
         right: 0px;
         bottom: 10rem;
         margin-right: 10px;
         border-radius: 50%;
         width: 3rem;
         height: 3rem;
-        border: 1px solid black;
+        border: 2px solid black;
     }
     .close{
         animation: close 1s ;

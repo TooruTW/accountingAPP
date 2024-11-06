@@ -4,18 +4,52 @@
     --btn-size:8rem;
     --btn-size-animation:100rem;
 }
-
 body{
     margin: 0;
     padding: 0;
     width: 100vw;
     height: 100vh;
+    min-height: 600px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-family: var(--text-font);
+    overflow: hidden;
+
 }
+a{  
+    color: rgb(72, 56, 56);
+    font-size: 1.5rem;
+}
+#tutorial{
+    width: 30%;
+    position: fixed;
+    right: 5rem;
+    bottom: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+#tutorial-active{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 2px solid black;
+    border-radius: 50%;
+    animation: close 1s ;
+    cursor: pointer;
+}
+
+.show-content{
+    animation: popup 1s forwards;
+}
+.hidden-1{
+    animation: pop-out 1s forwards
+}
+
 
 button{
     background-color: transparent;
@@ -27,9 +61,7 @@ button{
     font: inherit;
     color: inherit;
     cursor: pointer;
-
 }
-
 .container{
     width: 70%;
     height: 80%;
@@ -39,18 +71,14 @@ button{
     height: 60% ;
     text-align: center;
 }
-
 #monthly{
     display: flex;
     justify-content: space-around
 }
-
 #today{
     font-size: 1.5rem;
     font-style: italic;
-    margin-bottom: 3.5rem;
 }
-
 .userInput{
     width: 100%;
     height: 40%;
@@ -58,11 +86,9 @@ button{
     justify-content: center;
     align-items: center;
 }
-
 .hidden{
     display: none;
 }
-
 #input-amount{
     height: auto;
     border: none;
@@ -72,8 +98,6 @@ button{
     font-size:1.5rem;
     margin: 1rem;
 }
-
-
 .question-btns{
     font-weight: var(--font-weight);
     font-size: 2.5rem;
@@ -84,7 +108,6 @@ button{
     border: 0.25rem solid black;
     color: black;
 }
-
 .input-data{
     border: 0.25rem solid black;
     border-radius: 10px;
@@ -92,7 +115,6 @@ button{
     cursor: pointer;
     animation: shining 2s infinite;
 }
-
 #fade-out-animate-income{
     display: flex;
     justify-content: center;
@@ -113,6 +135,28 @@ button{
     animation: move-in 1s forwards;
 }
 
+@keyframes popup {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes pop-out {
+    from{
+        opacity: 1;
+        display: inline;
+    }
+    to{
+        opacity: 0;
+        display: none;
+    }
+}
+
+
+
 @keyframes move-in {
     0%{ 
         position: relative;
@@ -132,7 +176,6 @@ button{
 
     }
 }
-
 @keyframes fade-out-animate-income{
     0%{ 
         opacity: 0%;
@@ -183,7 +226,6 @@ button{
     }
    
 }
-
 @keyframes fade-out-animate-payment{
     0%{ 
         opacity: 0%;
@@ -234,19 +276,34 @@ button{
     }
    
 }
-
 @keyframes shining{
     0%{transform: scale(1);}
     50%{transform: scale(1.25);}
     100%{transform: scale(1);}
 }
-
+@keyframes active {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+@keyframes close {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(-360deg);
+    }
+}
 @media (max-width: 900px) {
     :root{
         --text-font: Impact;
         --font-weight:bold;
         --btn-size:5rem;
         --btn-size-animation:100rem;
+        --font-size: 1.5rem;
     }
     
     body{
@@ -314,6 +371,7 @@ button{
         animation: shining 2s infinite;
     }
     .question-btns{
+
         font-weight: var(--font-weight);
         height: var(--btn-size);
         width: var(--btn-size);
@@ -321,7 +379,7 @@ button{
         font-family: var(--text-font);
         border: 0.25rem solid black;
         color: black;
-        font-size: 1rem;
+        font-size: var(--font-size);
     }
     #result{
         cursor: pointer;

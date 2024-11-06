@@ -20,15 +20,15 @@
         <div class="userInput">
            
                 <div class="question">
-                    <button class="question-btns" id="start">START</button>
+                    <button class="question-btns" id="start">Quick Start</button>
                 </div>
                 <div class="question hidden" id="isIncome">
                     <button class="question-btns" value="收入">收入</button>
                     <button class="question-btns" value="支出">支出</button>
                 </div>
                 <div class="question hidden" id="purpose">
-                    <button class="question-btns income" value="本月薪水">本月薪水</button>
-                    <button class="question-btns income" value="天降ㄤ包">天降ㄤ包</button>
+                    <button class="question-btns income" value="本月薪水">本月<br/>薪水</button>
+                    <button class="question-btns income" value="天降ㄤ包">天降<br/>ㄤ包</button>
                     <button class="question-btns pay" value="吃的">吃的</button>
                     <button class="question-btns pay" value="喝的">喝的</button>
                     <button class="question-btns pay" value="穿的">穿的</button>
@@ -44,7 +44,19 @@
             
         </div>
     </div>
-   
+    <div id="tutorial">
+        <div class="hidden-1" id="tutorial-content">
+            <p>
+            Database : <br/>切換至資料庫頁面。欲輸入詳細資料或增修先前資料請置資料庫編輯。
+            </p>
+            <p>
+            QuickStart：<br/>簡略的快速輸入資料
+            </p>
+        </div>
+        <div id="tutorial-active">
+            <p>i</p>
+        </div>
+    </div>
     <script src="./mainpage.js"></script>
     
 </body>

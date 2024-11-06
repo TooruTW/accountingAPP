@@ -22,6 +22,9 @@ const incomes = document.querySelectorAll(".income")
 const payments = document.querySelectorAll(".pay")
 const result = document.querySelector("#result")
 
+const tutorialBtn = document.querySelector("#tutorial-active")
+const tutorialContent = document.querySelector("#tutorial-content")
+
 let questionIndex = 0
 let questionArr = Array(questions)
 let answer = []
@@ -106,6 +109,7 @@ function reSet(){
     result.innerHTML = `<div id="fade-out-animate-${answer[0] === "收入"? "income":"payment"}">$</div>`
     questionIndex = 0
     answer = []
+    document.querySelector("#input-amount").value = "";
     document.querySelector("#start").classList.add("move-inn")
     setTimeout(()=>{showNextQuestion(questionIndex)},3000)
     setDashBoard()
@@ -129,6 +133,13 @@ checkbtn.addEventListener('click',()=>{
         return
     }
 })
+
+tutorialBtn.addEventListener('click',()=>{
+    tutorialContent.classList.toggle("hidden-1")
+    tutorialContent.classList.toggle("show-content")
+})
+
+
 // 按鈕屬性添加 
 for(const btn of btns){
     btn.addEventListener('click',()=>{

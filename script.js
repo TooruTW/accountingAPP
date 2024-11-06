@@ -20,12 +20,14 @@ const inputCurrency = document.querySelector("#currency")
 const inputComment = document.querySelector("#comment")
 const btnSubmit = document.querySelector("#submit")
 const btnEdit = document.querySelector("#edit")
-const btnSave = document.querySelector("#save")
 const btnDelete = document.querySelector("#delete")
 const tableContent = document.querySelector("#table-content")
 const heads = document.querySelectorAll(".head")
 const btnInsert = document.querySelector("#Insert-active")
 const insertZone = document.querySelector("#insert")
+
+const tutorialBtn = document.querySelector("#tutorial-active")
+const tutorialContent = document.querySelector("#tutorial-content")
 
 
 // main-table testing database
@@ -33,7 +35,11 @@ let prevData = JSON.parse(localStorage.getItem("trading"))
 // JS用全局變數
 let tradingArray = [];
 
-
+// function 儲存資料到localStorage
+function dataSaveToStorage(){
+    let tradingArrayInJSON = JSON.stringify(tradingArray)
+    localStorage.setItem("trading",tradingArrayInJSON)
+}
 
 // function-將日期的default設為今天
 function setToday(){
@@ -149,6 +155,7 @@ btnSubmit.addEventListener("click",()=>{
         )
     if(dataToUpdate){    
         tradingArray.push(dataToUpdate)
+        dataSaveToStorage()
     }else{
         console.log(`data incomplete`)
         return}
@@ -170,17 +177,13 @@ btnEdit.addEventListener("click",()=>{
             tradingArray = tradingArray.filter(item => item.id !== Number(deleteID[i]))
             console.log(`round${i}`,deleteID[i], tradingArray)
         }
+        dataSaveToStorage()
         console.log("editing mode close")
         updateTable(tradingArray)
         btnEdit.textContent = "編輯"
     }
 })
-// EventListener-localStorage SAVE
-btnSave.addEventListener("click" , ()=>{
-    let tradingArrayInJSON = JSON.stringify(tradingArray)
-    localStorage.setItem("trading",tradingArrayInJSON)
-    alert(`Data Save`)
-})
+
 // EventListener-localStorage DELETE
 btnDelete.addEventListener("click" , ()=>{
     const userConfirm = confirm(`Are you sure about that?`)
@@ -200,6 +203,12 @@ btnInsert.addEventListener('click',()=>{
     btnInsert.classList.toggle("active")
     btnInsert.classList.toggle("close")
     insertZone.classList.toggle("mobile-hidden")
+})
+// 說明欄
+
+tutorialBtn.addEventListener('click',()=>{
+    tutorialContent.classList.toggle("hidden-1")
+    tutorialContent.classList.toggle("show-content")
 })
 
 // default start render and working
