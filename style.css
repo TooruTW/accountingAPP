@@ -38,6 +38,7 @@ a{
 }
 .hidden{
 display: none;
+pointer-events: none;
 }
 
 .container{
@@ -107,7 +108,8 @@ td{
     animation: popup 1s forwards;
 }
 .hidden-1{
-    animation: pop-out 1s forwards
+    animation: pop-out 1s forwards;
+    pointer-events: none;
 }
 
 #Insert-active{
@@ -154,6 +156,7 @@ td{
     }
     .hidden{
         display: none;
+        pointer-events: none;
     }
     .container{
         min-height: 80%;
@@ -210,6 +213,7 @@ td{
 
     .mobile-hidden{
         animation: vanish 1s forwards;
+        pointer-events: none;
     }
     
     #Insert-active{
