@@ -22,13 +22,15 @@ a{
     font-size: 1.5rem;
 }
 #tutorial{
-    width: 80%;
+    width: auto;
     position: fixed;
-    right: 5rem;
+    margin-left:10px;
+    right: 10px;
     bottom: 5rem;
     display: flex;
     flex-direction: column;
     align-items: end;
+    pointer-events: none;
 }
 #tutorial-content{
     padding: 1rem;
@@ -46,13 +48,13 @@ a{
     border-radius: 50%;
     animation: close 1s ;
     cursor: pointer;
+    pointer-events:all;
 }
 
 .show-content{
     animation: popup 1s forwards;
 }
 .hidden-1{
-    pointer-events: none;
     animation: pop-out 1s forwards
 }
 
@@ -93,7 +95,6 @@ button{
     align-items: center;
 }
 .hidden{
-    pointer-events: none;
     display: none;
 }
 #input-amount{

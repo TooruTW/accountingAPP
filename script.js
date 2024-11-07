@@ -132,12 +132,16 @@ function sortingData(datatype){
             default:
                 break;
     } 
-    updateTable(tradingArray)
+    return tradingArray
+    
 }
 // EventListener-sort
 heads.forEach(item =>{
+    let order = true
     item.addEventListener('click',()=>{
         sortingData(item.id)
+        order? updateTable(tradingArray):updateTable(tradingArray.reverse());        
+        order = !order
     })
 })
 // EventListener-送出

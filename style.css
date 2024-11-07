@@ -38,9 +38,7 @@ a{
 }
 .hidden{
 display: none;
-pointer-events: none;
 }
-
 .container{
     min-height: 80%;
     display: flex;
@@ -57,11 +55,9 @@ thead{
     font-weight: bold;
     cursor: pointer;
 }
-
 tr{
     height: 1.5rem;
 }
-
 td{ 
     text-align: center;
     border-bottom: 1px solid black;
@@ -79,6 +75,7 @@ td{
 }
 
 #tutorial{
+    pointer-events: none;
     width: 30%;
     position: fixed;
     right: 5rem;
@@ -88,6 +85,7 @@ td{
     align-items: end;
 }
 #tutorial-active{
+    pointer-events: all;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -156,13 +154,13 @@ td{
     }
     .hidden{
         display: none;
-        pointer-events: none;
     }
     .container{
         min-height: 80%;
         width: 100%;
     }
     .main-table{
+        padding: 1rem;
         width:100%;
         border-collapse: collapse;
         z-index: 1;
@@ -195,7 +193,7 @@ td{
         border: 0.25rem solid rgb(172, 172, 172);
         border-radius: 10px;
         height: 50%;
-        width: 30%;
+        width: 50%;
         background-color: whitesmoke;
         position: fixed;
         right: 10px;
