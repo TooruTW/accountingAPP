@@ -142,6 +142,7 @@ button{
     animation: fade-out-animate-payment 3s forwards;
 }
 .move-inn{
+    text-align: center;
     animation: move-in 1s forwards;
 }
 
@@ -167,19 +168,18 @@ button{
 
 @keyframes move-in {
     0%{ 
+        transform: rotate(-180deg);
         position: relative;
         bottom: 10rem;
-        opacity: 0%;
-        font-size:0.1rem;
-        border: 3.2rem solid black;
+        opacity: 0;
         clip-path: inset(100 0 0 0)
     }
 
     100%{
+        transform: rotate(0deg);
         position: relative;
         bottom: 0rem;
-        opacity: 100%;
-        border: 0.25rem solid black;
+        opacity: 1;
         clip-path: inset(0 0 0 0)
     }
 }
@@ -333,7 +333,6 @@ button{
         font: inherit;
         color: inherit;
         cursor: pointer;
-        z-index: 5;
     }
     .container{
         margin: 0;
