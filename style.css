@@ -139,8 +139,8 @@ td{
     }
     body{
         position: absolute;
-        padding: 0;
-        margin: 0;
+        padding: 0px;
+        margin: 10px;
         width: 95vw;
         height: 95vh;
     }

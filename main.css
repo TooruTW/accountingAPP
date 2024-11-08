@@ -107,7 +107,7 @@ button{
     margin: 1rem;
 }
 .question-btns{
-    text-align: center;
+    white-space: pre-line;
     font-weight: var(--font-weight);
     font-size: 2.5rem;
     height: var(--btn-size);
@@ -379,6 +379,7 @@ button{
         animation: shining 2s infinite;
     }
     .question-btns{
+        white-space: pre-line;
         font-weight: var(--font-weight);
         height: var(--btn-size);
         width: var(--btn-size);
