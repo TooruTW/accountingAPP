@@ -323,11 +323,18 @@ button{
         justify-content: space-around;
         font-family: var(--text-font);
     }
-    
     button{
-    background-color: transparent;
+        background-color: transparent;
+        -webkit-appearance: none; 
+        appearance: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        font: inherit;
+        color: inherit;
+        cursor: pointer;
+        z-index: 5;
     }
-    
     .container{
         margin: 0;
         width: 100%;
@@ -341,28 +348,23 @@ button{
         justify-content: center;
         align-items: center;
     }
-    
     #monthly{
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         text-align: left;
     }
-    
     #today{
         font-size: 1.5rem;
         font-style: italic;
     }
-    
     .userInput{
         width: 100%;
         height: 30%;
     }
-    
     .hidden{
         display: none;
     }
-    
     #input-amount{
         border: none;
         border-bottom: 0.25rem solid black;
